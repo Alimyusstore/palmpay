@@ -17,7 +17,7 @@ const Nav = () => {
     setShow(show= false)
   }
 
-  const [toggle, setToggle] = useState(false)
+  const [toggle, setToggle] = useState(true)
 
   function handleToggle(){
     setToggle(!toggle)
@@ -43,7 +43,7 @@ const Nav = () => {
             <li
               className={
                 show
-                  ? "sm:border-b-4 sm:border-b-purple-500 "
+                  ? "sm:border-b-4 pb-3 sm:border-b-purple-500 "
                   : "sm:border-none"
               }
               onMouseOver={() => handleShow()}
@@ -53,22 +53,22 @@ const Nav = () => {
             <li>Developers</li>
             <li>Pricing</li>
             <div
-              className="absolute sm:right-[35rem] sm:top-[4rem]"
+              className="absolute sm:right-[35rem] sm:top-[4.3rem]"
               onMouseOver={() => handleShow()}
               onMouseLeave={() => handleHide()}
             >
               <ul
                 className={
                   show
-                    ? "flex flex-col gap-4 bg-white rounded shadow-2xl p-5"
+                    ? "flex flex-col gap-6 bg-white rounded-2xl shadow-2xl p-8 drop-shadow-lg"
                     : "hidden"
                 }
               >
-                <Link to={pathBlog}>
-                  <li>Blog</li>
-                </Link>
                 <Link to={pathAbout}>
                   <li>About</li>
+                </Link>
+                <Link to={pathBlog}>
+                  <li>Blog</li>
                 </Link>
                 <Link to={pathMedia}>
                   <li>Press and Media</li>
@@ -82,7 +82,9 @@ const Nav = () => {
         </div>
         <div className="flex">
           <div className="flex gap-3 sm:px-5 px-2 rounded-3xl bg-[#e1e1e147]">
-            <img className="w-5 py-2 " src={NG} alt="NG" />{" "}
+            <div className='pt-2'>
+              <img className="w-7 pt2" src={NG} alt="NG" />{" "}
+              </div>
             <p className="hidden sm:block">Nigeria</p>{" "}
             <RiArrowDropDownLine className="mt-2" />
           </div>
