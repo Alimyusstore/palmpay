@@ -148,15 +148,11 @@ function MainContact(){
        setHoverBtn(!hoverBtn);
      }
      let [toggle, setToggle] = useState(0)
+     let [show, setShow] = useState(false)
      function handleToggle(id){ 
-    //    toggle = locations.map((location) =>
-        //    location.id === id
-        //      ? { ...location, toggled: !location.toggled }
-        //      : location);
-        //      console.log(toggle);
-        //      setToggle(toggle);
+        let handler = locations.filter(location => location.id === id).map(location => location.toggled === show ? true : false)
+        setShow(handler[0])
         setToggle(id)
-            // localStorage.setItem('toggled', JSON.stringify(toggle));
      }
 
     return (
@@ -209,18 +205,31 @@ function MainContact(){
         <div className="bg-[#f7f7fb] p-14">
           {locations.map((location) => (
             <div
+              onDoubleClick={() => handleToggle(location.id)}
               className="flex justify-between p-5 border-b-2"
               key={location.id}
             >
-              <div onDoubleClick={() => handleToggle(location.id)}>
+              <div>
                 <h2 className="font-semibold text-2xl">{location.name}</h2>
-                <p className={toggle == location.id ? "block" : "hidden"}>
+                <p
+                  className={
+                    toggle == location.id
+                      ? show
+                        ? "block"
+                        : "hidden"
+                      : "hidden"
+                  }
+                >
                   {location.place}
                 </p>
               </div>
               <div onClick={() => handleToggle(location.id)}>
                 {toggle == location.id ? (
-                  <MdCancel className="text-[#6d46db] text-[1.3rem]" />
+                  show ? (
+                    <MdCancel className="text-[#6d46db] text-[1.3rem]" />
+                  ) : (
+                    <FaCirclePlus className="text-[#6d46db] text-[1.3rem]" />
+                  )
                 ) : (
                   <FaCirclePlus className="text-[#6d46db] text-[1.3rem]" />
                 )}
